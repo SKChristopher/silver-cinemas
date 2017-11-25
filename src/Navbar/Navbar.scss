@@ -1,0 +1,50 @@
+$theme-color1: white;
+
+#navbar-container {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0);
+  text-align: center;
+  #navbar {
+    height: 56px;
+    background: black;
+    #logo {
+      position: absolute;
+      left: 20%;
+      width: 56px;
+      height: 56px;
+    }
+    .nav-link {
+      display: inline-block;
+      margin: 0px 75px 0px 0px;
+      padding: 19px;
+      color: $theme-color1;
+      cursor: default;
+    }
+    .nav-link:hover {
+      text-decoration: underline;
+    }
+  }
+  // --------------- dropdowns ----------------------------------- dropdowns -------------------------------------- dropdowns -------------------------------
+  #signin-dropdown {
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(42deg, rgb(181, 67, 52) 0%, rgb(210, 97, 69) 50%, rgb(215, 109, 77) 50.01%, #FFFFFF 100%);
+  }
+  #tickets-dropdown {
+    width: 100%;
+    position: absolute;
+    background: linear-gradient(42deg, rgb(61, 52, 181) 0%, rgb(79, 69, 210) 50%, rgb(79, 77, 215) 50.01%, rgb(255, 255, 255) 100%);
+    .movie-button {
+      margin-top: 5px;
+    }
+  }
+  #food-dropdown {
+    width: 100%;
+    position: absolute;
+    color: $theme-color1;
+    background: linear-gradient(42deg, #B58234 0%, #D2B545 50%, #D7C04D 50.01%, #FFFFFF 100%);
+  }
+}
