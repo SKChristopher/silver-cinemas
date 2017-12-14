@@ -21,16 +21,16 @@ const Navbar = ({ selectMovie, navbarView, signInHover, ticketsHover, foodHover,
         </div>
         <div id="signin-dropdown">
           <form onSubmit={signIn}>
-            <input autocomplete="off" id="username-box" type="text" placeholder="username" name="username"></input>
+            <input autoComplete="off" id="username-box" type="text" placeholder="username" name="username"></input>
             <br />
-            <input autocomplete="off" type="password" placeholder="password" name="password"></input>
+            <input autoComplete="off" type="password" placeholder="password" name="password"></input>
             <br />
             <button type="submit">Sign In</button>
           </form>
           <form onSubmit={signUp}>
-            <input autocomplete="off" type="text" placeholder="username" name="username"></input>
+            <input autoComplete="off" type="text" placeholder="username" name="username"></input>
             <br />
-            <input autocomplete="off" type="password" placeholder="password" name="password"></input>
+            <input autoComplete="off" type="password" placeholder="password" name="password"></input>
             <br />
             <button type="submit">Sign Up</button>
           </form>

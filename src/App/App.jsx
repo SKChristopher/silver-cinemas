@@ -10,13 +10,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      num: 1,
       username: 'Guest',
       navbarView: '',
+      selectedSeat: 0,
       selectedMovie: [
         {
           title: 'The Foreigner',
           image: "https://www.purefandom.com/wp-content/uploads/2017/10/The-Foreigner-Movie-Poster.jpg",
           trailer: "https://www.youtube.com/embed/33iuQu3UtjI",
+          theater: "Theater 1",
         },
       ],
       movie: [
@@ -24,28 +27,38 @@ class App extends React.Component {
           title: 'The Foreigner',
           image: "https://www.purefandom.com/wp-content/uploads/2017/10/The-Foreigner-Movie-Poster.jpg",
           trailer: 'https://www.youtube.com/embed/33iuQu3UtjI',
+          theater: "Theater 1",
         },
         {
           title: 'Thor: Ragnarok',
           image: "http://cdn-static.denofgeek.com/sites/denofgeek/files/2017/10/thor_ragnarok.jpg",
           trailer: "https://www.youtube.com/embed/ue80QwXMRHg",
+          theater: "Theater 2",
         },
         {
           title: 'Justice League',
           image: "http://www.justiceleaguethemovie.com/img/gallery/img01.jpg",
           trailer: "https://www.youtube.com/embed/r9-DM9uBtVI",
+          theater: "Theater 3",
         },
         {
           title: 'Kingsman: The Golden Circle',
           image: "https://weliveentertainment.com/wp-content/uploads/2017/09/KIngsman-2.jpg",
           trailer: "https://www.youtube.com/embed/6Nxc-3WpMbg",
+          theater: "Theater 4",
         },
         {
           title: 'It',
           image: "https://www.hdwallpapers.in/walls/it_2017_5k-wide.jpg",
           trailer: "https://www.youtube.com/embed/xKJmEC5ieOk",
+          theater: "Theater 5",
         },
       ],
+      theater1: {},
+      theater2: {},
+      theater3: {},
+      theater4: {},
+      theater5: {},
     };
     this.handleSignInHover = this.handleSignInHover.bind(this);
     this.handleTicketsHover = this.handleTicketsHover.bind(this);
@@ -57,6 +70,25 @@ class App extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
 
     this.handlePlayTrailer = this.handlePlayTrailer.bind(this);
+    this.handleBuyTicket = this.handleBuyTicket.bind(this);
+    this.handleSelectSeat = this.handleSelectSeat.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchTheaters();
+  }
+
+  fetchTheaters() {
+    axios.get('/getTheaters')
+      .then((response) => {
+        const theaters = response.data;
+        const theater1 = theaters[0];
+        const theater2 = theaters[1];
+        const theater3 = theaters[2];
+        const theater4 = theaters[3];
+        const theater5 = theaters[4];
+        this.setState({ theater1, theater2, theater3, theater4, theater5 });
+      });
   }
 
   // ----------------- navbar ----------------------------------- navbar ----------------------------------------- navbar -------------------------------------------------------
@@ -93,7 +125,6 @@ class App extends React.Component {
       }
     });
     this.setState({ selectedMovie });
-    console.log(this.state.selectedMovie);
   }
 
   // ----------------- signin ----------------------------------- signin ----------------------------------------- signin -------------------------------------------------------
@@ -106,12 +137,12 @@ class App extends React.Component {
       username: e.target.username.value,
       password: e.target.password.value
     })
-    .then(response => {
-      if (response.data !== false) {
-        this.setState ({ username });
-        console.log('Logged in as ' + username);
-      } else { console.log('Invalid Login'); }
-    });
+      .then(response => {
+        if (response.data !== false) {
+          this.setState({ username });
+          console.log('Logged in as ' + username);
+        } else { console.log('Invalid Login'); }
+      });
 
     e.target.username.value = "";
     e.target.password.value = "";
@@ -126,15 +157,15 @@ class App extends React.Component {
       username: e.target.username.value,
       password: e.target.password.value
     })
-    .then(response => {
-      if (response.data === true) {
-        this.setState ({ username });
-        console.log('User created and logged in as ' + username);
-      } else if (response.data !== true) {
-        console.log('Error, account not created.');
-        return;
-      }
-    });
+      .then(response => {
+        if (response.data === true) {
+          this.setState({ username });
+          console.log('User created and logged in as ' + username);
+        } else if (response.data !== true) {
+          console.log('Error, account not created.');
+          return;
+        }
+      });
 
     e.target.username.value = "";
     e.target.password.value = "";
@@ -144,7 +175,72 @@ class App extends React.Component {
   handlePlayTrailer() {
     let trailer = document.getElementById('fade');
     trailer.style.display = 'block';
-    console.log('supfam');
+  }
+
+  // ----------------- theater ----------------------------------- theater ----------------------------------------- theater -------------------------------
+  handleCreateTheater() {
+    const num = this.state.num;
+    axios.post("createTheater", {
+      name: 'Theater ' + num,
+      seats: [
+        'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+        'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+        'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+        'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+        'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+      ],
+    })
+      .then(response => {
+        if (response.data === true) {
+          alert('Theater Created');
+        } else if (response.data !== true) {
+          alert('Error, theater not created');
+          return;
+        }
+      });
+    this.state.num++;
+  }
+
+  handleSelectSeat(num) {
+    let selectedSeat = num;
+    this.setState({ num });
+    console.log(this.state.selectedSeat);
+  }
+
+  handleBuyTicket() {
+    console.log(this.state.selectedMovie[0].theater);
+    let newSeats = null;
+    switch (this.state.selectedMovie[0].theater) {
+      case 'Theater 1':
+        newSeats = this.state.theater1.seats;
+        break;
+      case 'Theater 2':
+        newSeats = this.state.theater2.seats;
+        break;
+      case 'Theater 3':
+        newSeats = this.state.theater3.seats;
+        break;
+      case 'Theater 4':
+        newSeats = this.state.theater4.seats;
+        break;
+      case 'Theater 5':
+        newSeats = this.state.theater5.seats;
+        break;
+    }
+    newSeats[this.state.selectedSeat] = this.state.username;
+    axios
+      .post("updateTheater", {
+        name: this.state.selectedMovie[0].theater,
+        seats: newSeats,
+      })
+      .then(response => {
+        if (response.data !== false) {
+          console.log('theater updated');
+        } else if (response.data === false) {
+          alert('Error');
+          return;
+        }
+      });
   }
 
   render() {
@@ -165,6 +261,8 @@ class App extends React.Component {
           selectedMovie={this.state.selectedMovie}
           movie={this.state.movie}
           playTrailer={this.handlePlayTrailer}
+          buyTicket={this.handleBuyTicket}
+          selectSeat={this.handleSelectSeat}
         />
       </div>
     );
