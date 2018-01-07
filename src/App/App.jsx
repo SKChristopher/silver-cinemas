@@ -205,9 +205,13 @@ class App extends React.Component {
     // e.target.className = 'filled-seat';
     // console.log(e.target.className);
 
-    let selectedSeat = Number(e.target.innerText);
+    let selectedSeat = Number(e.target.innerText) - 1;
     this.setState({ selectedSeat });
     console.log(Number(e.target.innerText));
+
+    let test = document.getElementById('confirmation');
+    console.log(test);
+    test.style.display = 'block';
 
   }
 
@@ -245,6 +249,7 @@ class App extends React.Component {
           return;
         }
       });
+    
   }
 
   render() {

@@ -30,4 +30,17 @@
       margin: 1px;
     }
   }
+  #confirmation {
+    border: 5px solid black;
+    margin-top: 100px;
+    margin-left: 30%;
+    background-color: white;
+    width: 325px;
+    height: 160px;
+    text-align: center;
+    .confirmation-button {
+      cursor: pointer;
+      border: 1px solid black;
+    }
+  }
 }

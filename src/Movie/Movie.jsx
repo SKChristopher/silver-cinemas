@@ -10,7 +10,8 @@ const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theat
         <img id="movie-background-image" src={ selectedMovie[0].image }/>
         <button id="test2" onClick={ buyTicket }>Push Me</button>
         <input type="text"/>
-        <Theater 
+        <Theater
+          buyTicket={buyTicket} 
           selectSeat={selectSeat}
           selectedMovie={selectedMovie}
           theater1={theater1}
