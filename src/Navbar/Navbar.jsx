@@ -58,7 +58,7 @@ const Navbar = ({ selectMovie, navbarView, signInHover, ticketsHover, foodHover,
           <Link to="/tickets"><button className="movie-button" onClick={selectMovie} id="Justice League">Justice League</button></Link><br />
           <Link to="/tickets"><button className="movie-button" onClick={selectMovie} id="The Foreigner">The Foreigner</button></Link><br />
           <Link to="/tickets"><button className="movie-button" onClick={selectMovie} id="Kingsman: The Golden Circle">Kingsman: The Golden Circle</button></Link><br />
-          <Link to="/tickets"><button className="movie-button" onClick={selectMovie} id="It">It</button></Link>
+          <Link to="/tickets"><button className="movie-button" onClick={selectMovie} id="Star Wars: The Last Jedi">Star Wars: The Last Jedi</button></Link>
         </div>
       </div>
     );

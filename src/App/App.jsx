@@ -48,9 +48,9 @@ class App extends React.Component {
           theater: "Theater 4",
         },
         {
-          title: 'It',
-          image: "https://www.hdwallpapers.in/walls/it_2017_5k-wide.jpg",
-          trailer: "https://www.youtube.com/embed/xKJmEC5ieOk",
+          title: 'Star Wars: The Last Jedi',
+          image: "https://wallpapersite.com/images/wallpapers/star-wars-the-last-jedi-2688x1512-hd-2017-10625.jpg",
+          trailer: "https://www.youtube.com/watch?v=Q0CbN8sfihY",
           theater: "Theater 5",
         },
       ],
@@ -196,15 +196,19 @@ class App extends React.Component {
         } else if (response.data !== true) {
           alert('Error, theater not created');
           return;
-        }
+        } 
       });
     this.state.num++;
   }
 
-  handleSelectSeat(num) {
-    let selectedSeat = num;
-    this.setState({ num });
-    console.log(this.state.selectedSeat);
+  handleSelectSeat(e) {
+    // e.target.className = 'filled-seat';
+    // console.log(e.target.className);
+
+    let selectedSeat = Number(e.target.innerText);
+    this.setState({ selectedSeat });
+    console.log(Number(e.target.innerText));
+
   }
 
   handleBuyTicket() {
@@ -263,6 +267,11 @@ class App extends React.Component {
           playTrailer={this.handlePlayTrailer}
           buyTicket={this.handleBuyTicket}
           selectSeat={this.handleSelectSeat}
+          theater1={this.state.theater1}
+          theater2={this.state.theater2}
+          theater3={this.state.theater3}
+          theater4={this.state.theater4}
+          theater5={this.state.theater5}
         />
       </div>
     );
