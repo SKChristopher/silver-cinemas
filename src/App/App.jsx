@@ -59,6 +59,7 @@ class App extends React.Component {
       theater3: {},
       theater4: {},
       theater5: {},
+      display: {display:"none"},
     };
     this.handleSignInHover = this.handleSignInHover.bind(this);
     this.handleTicketsHover = this.handleTicketsHover.bind(this);
@@ -209,13 +210,18 @@ class App extends React.Component {
     this.setState({ selectedSeat });
     console.log(Number(e.target.innerText));
 
-    let test = document.getElementById('confirmation');
-    console.log(test);
-    test.style.display = 'block';
+    // let test = document.getElementById('confirmation');
+    // console.log(test);
+    // test.style.display = 'block';
+
+    let display = {display:"block"};
+    this.setState({display});
 
   }
 
   handleBuyTicket() {
+    let display = {display:"none"};
+    this.setState({display});
     console.log(this.state.selectedMovie[0].theater);
     let newSeats = null;
     switch (this.state.selectedMovie[0].theater) {
@@ -277,6 +283,7 @@ class App extends React.Component {
           theater3={this.state.theater3}
           theater4={this.state.theater4}
           theater5={this.state.theater5}
+          display={this.state.display}
         />
       </div>
     );

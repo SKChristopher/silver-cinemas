@@ -4,7 +4,7 @@ import './Movie.scss';
 
 import Theater from './../Theater/Theater.jsx';
 
-const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5 }) => {
+const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display }) => {
   return (
       <div onCLick={navbarLeave} id="movie-container">
         <img id="movie-background-image" src={ selectedMovie[0].image }/>
@@ -19,6 +19,7 @@ const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theat
           theater3={theater3}
           theater4={theater4}
           theater5={theater5}
+          display={display}
           />
       </div>
   );
