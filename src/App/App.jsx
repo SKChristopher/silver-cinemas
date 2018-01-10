@@ -54,12 +54,22 @@ class App extends React.Component {
           theater: "Theater 5",
         },
       ],
-      theater1: {},
+      theater1: {
+        name: 'Theater ' + '1',
+        seats: [
+          'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+          'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+          'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+          'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+          'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o',
+        ],
+      },
       theater2: {},
       theater3: {},
       theater4: {},
       theater5: {},
       display: {display:"none"},
+      displayFade2: {display:"none"},
     };
     this.handleSignInHover = this.handleSignInHover.bind(this);
     this.handleTicketsHover = this.handleTicketsHover.bind(this);
@@ -73,6 +83,9 @@ class App extends React.Component {
     this.handlePlayTrailer = this.handlePlayTrailer.bind(this);
     this.handleBuyTicket = this.handleBuyTicket.bind(this);
     this.handleSelectSeat = this.handleSelectSeat.bind(this);
+
+    this.handleShowTheater = this.handleShowTheater.bind(this);
+    this.handleCloseTheater = this.handleCloseTheater.bind(this);
   }
 
   componentDidMount() {
@@ -179,6 +192,16 @@ class App extends React.Component {
   }
 
   // ----------------- theater ----------------------------------- theater ----------------------------------------- theater -------------------------------
+  handleCloseTheater() {
+    let displayFade2 = {display:"none"};
+    this.setState({displayFade2});
+  }
+
+  handleShowTheater() {
+    let displayFade2 = {display:"block"};
+    this.setState({displayFade2});
+  }
+
   handleCreateTheater() {
     const num = this.state.num;
     axios.post("createTheater", {
@@ -284,6 +307,9 @@ class App extends React.Component {
           theater4={this.state.theater4}
           theater5={this.state.theater5}
           display={this.state.display}
+          displayFade2={this.state.displayFade2}
+          showTheater={this.handleShowTheater}
+          closeTheater={this.handleCloseTheater}
         />
       </div>
     );
