@@ -1,15 +1,20 @@
 import React from 'react';
+import FontAwesome from 'react-fontawesome';
 
 import './Movie.scss';
 
 import Theater from './../Theater/Theater.jsx';
+import Trailer from './../Trailer/Trailer.jsx';
 
-const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display, closeTheater, displayFade2, showTheater }) => {
+const Movie = ({ playTrailer, cancelPurchase, navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display, closeTheater, displayFade2, showTheater }) => {
   return (
       <div onCLick={navbarLeave} id="movie-container">
+        <Trailer 
+          selectedMovie = {selectedMovie}
+          />
         <img id="movie-background-image" src={ selectedMovie[0].image }/>
-        <button id="test2" onClick={ showTheater }>Push Me</button>
-        <input type="text"/>
+        <button id="purchase-ticket" onClick={ showTheater }>Purchase Tickets for {selectedMovie[0].title}</button>
+        <button className="play-button" onClick={playTrailer}><FontAwesome name="play-circle-o" /> Play Trailer</button>
         <Theater
           buyTicket={buyTicket} 
           selectSeat={selectSeat}
@@ -22,6 +27,7 @@ const Movie = ({ navbarLeave, selectedMovie, movie, buyTicket, selectSeat, theat
           display={display}
           displayFade2={displayFade2}
           closeTheater={closeTheater}
+          cancelPurchase={cancelPurchase}
           />
       </div>
   );

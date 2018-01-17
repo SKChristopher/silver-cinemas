@@ -2,7 +2,7 @@ import React from 'react';
 
 import './Theater.scss';
 
-const Theater = ({ selectSeat, selectedMovie, theater1, theater2, theater3, theater4, theater5, buyTicket, display, displayFade2, closeTheater }) => {
+const Theater = ({ cancelPurchase, selectSeat, selectedMovie, theater1, theater2, theater3, theater4, theater5, buyTicket, display, displayFade2, closeTheater }) => {
   let theater = null;
   switch (selectedMovie[0].theater) {
     case 'Theater 1':
@@ -65,7 +65,7 @@ const Theater = ({ selectSeat, selectedMovie, theater1, theater2, theater3, thea
       <div id="confirmation" style={display}>
         <div>Would you like to purchase this seat?</div><br /><br />
         <div className="confirmation-button" onClick={buyTicket}> Yes </div><br />
-        <div className="confirmation-button"> No </div>
+        <div className="confirmation-button" onClick={cancelPurchase}> No </div>
       </div>
     </div>
   );

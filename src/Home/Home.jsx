@@ -9,7 +9,9 @@ import Theater from './../Theater/Theater.jsx';
 const Home = ({ playTrailer, selectedMovie, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display, displayFade2, showTheater, closeTheater }) => {
   return (
     <div>
-      <Trailer />
+      <Trailer 
+        selectedMovie={selectedMovie}
+        />
       <div id="home-container">
         <img id="background-image" src="https://www.purefandom.com/wp-content/uploads/2017/10/The-Foreigner-Movie-Poster.jpg" />
         <div id="home-header">

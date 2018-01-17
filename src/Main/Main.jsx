@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './../Home/Home.jsx';
 import Movie from './../Movie/Movie.jsx';
 
-const Main = ({ navbarLeave, selectedMovie, movie, playTrailer, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display, displayFade2, showTheater, closeTheater }) => (
+const Main = ({ cancelPurchase, navbarLeave, selectedMovie, movie, playTrailer, buyTicket, selectSeat, theater1, theater2, theater3, theater4, theater5, display, displayFade2, showTheater, closeTheater }) => (
   <main>
     <Switch>
       <Route exact path="/" component={() => (<Home
@@ -38,6 +38,8 @@ const Main = ({ navbarLeave, selectedMovie, movie, playTrailer, buyTicket, selec
         displayFade2={displayFade2}
         closeTheater={closeTheater}
         showTheater={showTheater}
+        cancelPurchase={cancelPurchase}
+        playTrailer={ playTrailer }
         />)} />
     </Switch>
   </main>

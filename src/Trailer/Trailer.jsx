@@ -2,11 +2,11 @@ import React from 'react';
 
 import './Trailer.scss';
 
-const Trailer = ({  }) => {
+const Trailer = ({ selectedMovie }) => {
   return (
     <div id="fade">
       <div id="trailer">
-        <iframe className="trailer-video" src="https://www.youtube.com/embed/33iuQu3UtjI" frameBorder="0" gesture="media" allowFullScreen></iframe>
+        <iframe className="trailer-video" src={selectedMovie[0].trailer} frameBorder="0" gesture="media" allowFullScreen></iframe>
       </div>
     </div>
   );

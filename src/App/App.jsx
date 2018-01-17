@@ -50,7 +50,7 @@ class App extends React.Component {
         {
           title: 'Star Wars: The Last Jedi',
           image: "https://wallpapersite.com/images/wallpapers/star-wars-the-last-jedi-2688x1512-hd-2017-10625.jpg",
-          trailer: "https://www.youtube.com/watch?v=Q0CbN8sfihY",
+          trailer: "https://www.youtube.com/embed/Q0CbN8sfihY",
           theater: "Theater 5",
         },
       ],
@@ -86,6 +86,8 @@ class App extends React.Component {
 
     this.handleShowTheater = this.handleShowTheater.bind(this);
     this.handleCloseTheater = this.handleCloseTheater.bind(this);
+
+    this.handleCancelPurchase = this.handleCancelPurchase.bind(this);
   }
 
   componentDidMount() {
@@ -278,7 +280,11 @@ class App extends React.Component {
           return;
         }
       });
-    
+  }
+
+  handleCancelPurchase() {
+    let display = {display:"none"};
+    this.setState({display});
   }
 
   render() {
@@ -301,6 +307,7 @@ class App extends React.Component {
           playTrailer={this.handlePlayTrailer}
           buyTicket={this.handleBuyTicket}
           selectSeat={this.handleSelectSeat}
+          cancelPurchase={this.handleCancelPurchase}
           theater1={this.state.theater1}
           theater2={this.state.theater2}
           theater3={this.state.theater3}
